@@ -1,0 +1,39 @@
+package com.qfdth.openfeign.feign;
+
+import com.qfdth.demo.service.Book;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.*;
+
+
+
+/**
+ * @Author TH
+ * @Date 2022/3/18 12:10
+ * @Version jdk1.8
+ *
+ */
+//加了 @FeignClient 依赖之后，系统会自动给 BookService 生成一个代理类，并且将之注册到 Spring 容器中
+//表示这个 Feign 客户端绑定了 storage 服务   不能做全局配置 /book
+@FeignClient(value = "storage")
+public interface BookService {
+    /**
+     * 使用 OpenFeign 实现远程接口调用时，参数一定一定记得加注解
+     * @param id
+     * @return
+     */
+    @GetMapping("/book/")
+    Book getBookById(@RequestParam("id") Integer id);
+
+    @DeleteMapping("/book/{id}")
+    void deleteBookById(@PathVariable("id") Integer id);
+
+    @PostMapping("/book/")
+    Book addBook(@RequestBody Book book);
+
+//  不能解析重定向
+//    @PostMapping("/book/add")
+//    String addBook2(@RequestBody Book book);
+
+    @PutMapping("/book/")
+    void updateBook(@RequestBody Book book);
+}
