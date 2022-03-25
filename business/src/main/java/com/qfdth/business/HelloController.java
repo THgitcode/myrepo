@@ -26,8 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @Author TH  
  * @Date 2022/3/17 22:34
- * @Version jdk1.8  
-*  hello123！！！
+ * @Version jdk1.8
  */
 @RestController
 public class HelloController {
