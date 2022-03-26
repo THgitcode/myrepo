@@ -1,9 +1,21 @@
 spring:
   application:
     name: gateway
+  cloud:
+    gateway:
+        - id: myroute
+          uri: http://httpbin.org/
+          predicates:
+            - Path=/get
+      discovery:
+        locator:
+          enabled: true #开启自动代理发现
 server:
   port: 5000
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:1111/eureka
+logging:
+  level:
+    org.springframework.cloud.gateway: debug   #打印日志
