@@ -2,6 +2,7 @@ package com.qfdth.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.PredicateSpec;
@@ -20,13 +21,13 @@ public class GatewayApplication {
         SpringApplication.run(GatewayApplication.class, args);
     }
 
-    @Bean
-    RouteLocator routeLocator(RouteLocatorBuilder builder){
-        return builder.routes().route("myroute", new Function<PredicateSpec, Route.AsyncBuilder>() {
-            @Override
-            public Route.AsyncBuilder apply(PredicateSpec r) {
-                return r.path("/get").uri("http://httpbin.org/");
-            }
-        }).build();
-    }
+//    @Bean
+//    RouteLocator routeLocator(RouteLocatorBuilder builder){
+//        return builder.routes().route("myroute", new Function<PredicateSpec, Route.AsyncBuilder>() {
+//            @Override
+//            public Route.AsyncBuilder apply(PredicateSpec r) {
+//                return r.path("/get").uri("http://httpbin.org/");
+//            }
+//        }).build();
+//    }
 }
